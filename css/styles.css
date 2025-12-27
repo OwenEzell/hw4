@@ -1,0 +1,285 @@
+/* Light (good for body text) */
+@font-face {
+  font-family: "Caecilia";
+  src: url("../fonts/CaeciliaLTPro45Light.TTF") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Light Italic */
+@font-face {
+  font-family: "Caecilia";
+  src: url("../fonts/CaeciliaLTPro46LightIt.TTF") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Regular */
+@font-face {
+  font-family: "Caecilia";
+  src: url("../fonts/CaeciliaLTPro55Roman.TTF") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Regular Italic */
+@font-face {
+  font-family: "Caecilia";
+  src: url("../fonts/CaeciliaLTPro56RomanIt.TTF") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Bold */
+@font-face {
+  font-family: "Caecilia";
+  src: url("../fonts/CaeciliaLTPro75Bold.TTF") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bold Italic */
+@font-face {
+  font-family: "Caecilia";
+  src: url("../fonts/CaeciliaLTPro76BoldIt.TTF") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Heavy (optional for special use) */
+@font-face {
+  font-family: "Caecilia";
+  src: url("../fonts/CaeciliaLTPro85Heavy.TTF") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Heavy Italic (optional) */
+@font-face {
+  font-family: "Caecilia";
+  src: url("../fonts/CaeciliaLTPro86HeavyIt.TTF") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --nav-gap: clamp(10px, 3vw, 30px);
+  --nav-left-gap: clamp(10px, 3vw, 30px);
+  --logo-size: clamp(24px, 4vw, 30px);
+  --gap: clamp(10px, 1.5vw, 11px);
+  --big-gap: clamp(18px, 2.5vw, 36px);
+  --h1-font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  --h2-font-size: clamp(1rem, 0.75rem + 1vw, 1.25rem);
+}
+
+/* 1. Outer = dark */
+html {
+  background: #1c1b1a;
+  padding: clamp(16px, 3vh, 40px);
+  font-size: 100%;
+}
+
+/* 2. Actual page = body */
+
+body {
+  background: #f0eae4;
+  max-width: 1000px;
+  min-height: 100vh;
+  font-family: "Caecilia", serif;
+  font-weight: 350;
+  color: #3f3d3b;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-inline: clamp(16px, 6vw, 60px);
+  padding-block: clamp(10px, 6vw, 40px);
+}
+
+a {
+  color: #3f3d3b;
+}
+
+a:focus,
+a:hover {
+  text-decoration: none;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  position: static;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+nav img {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  flex: 0 0 auto;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nav-gap);
+  margin: 0;
+  margin-left: var(--nav-left-gap);
+  padding: 0;
+  min-width: 0;
+  row-gap: 2px;
+  flex: 1 1 auto;
+}
+
+nav a {
+  text-decoration: none;
+  color: #3f3d3b;
+  line-height: 0.75;
+  padding: 2px 0;
+}
+
+nav ul li:nth-child(3) a {
+  font-weight: 700; /* uses your Caecilia bold weight */
+}
+
+nav a:hover,
+nav a:focus {
+  opacity: 0.8;
+}
+
+article {
+  margin: 60px 0px 60px 0px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 55ch) 1fr;
+  column-gap: clamp(16px, 3vw, 40px);
+}
+
+article
+  :is(h1, h2, h3, p, address, time, blockquote, ul, ol, address, time, footer) {
+  grid-column: 1;
+  margin: 0;
+}
+
+/* eliminate header as a box for the layout */
+article > header {
+  display: contents;
+}
+
+article img {
+  grid-column: 1;
+  border-radius: 20px;
+  max-width: 100%;
+  height: auto;
+  margin-top: var(--big-gap);
+  margin-bottom: var(--big-gap);
+}
+
+article img.full-bleed {
+  grid-column: 1 / -1;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
+article .carousel {
+  grid-column: 1 / -1;
+  margin-block: var(--big-gap);
+  display: flex;
+  gap: var(--big-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-inline: 2px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+article .carousel img {
+  flex: 0 0 300px;
+  max-width: 300px;
+  height: auto;
+  margin: 0;
+
+  border-radius: 20px;
+  scroll-snap-align: start;
+}
+
+article iframe.video-wrapper {
+  grid-column: 1;
+  margin-top: var(--big-gap);
+  margin-bottom: var(--big-gap);
+  border-radius: 20px;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+article iframe.video-wrapper.short {
+  aspect-ratio: 9 / 16;
+  max-width: 300px;
+}
+
+article h1 {
+  font-size: var(--h1-font-size);
+  max-width: 22ch;
+  color: #302e2c;
+  margin-bottom: var(--gap);
+}
+
+article h2 {
+  font-size: var(--h2-font-size);
+  color: #302e2c;
+  margin-top: var(--big-gap);
+  margin-bottom: var(--gap);
+}
+
+article p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: none;
+  margin-top: var(--gap);
+  margin-bottom: var(--gap);
+}
+
+blockquote p {
+  font-style: italic;
+  padding-left: 20px;
+}
+
+blockquote p :is(em, i) {
+  font-style: normal;
+}
+
+article footer {
+  margin-top: var(--big-gap);
+}
+
+@media (max-width: calc(55ch + clamp(16px, 3vw, 40px))) {
+  article {
+    grid-template-columns: 1fr;
+  }
+  article .carousel img {
+    flex: 0 0 80%;
+    max-width: 80%;
+  }
+}
