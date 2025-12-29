@@ -82,7 +82,7 @@
 
 /* 1. Outer = dark */
 html {
-  background: #000000;
+  background: #1c1b1a;
   padding: clamp(16px, 3vh, 40px);
   font-size: 100%;
 }
